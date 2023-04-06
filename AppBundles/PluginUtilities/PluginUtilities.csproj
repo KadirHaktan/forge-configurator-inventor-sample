@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="..\InventorBinFolder.props" />
+  <Import Project="C:\Program Files\Autodesk\Inventor 2021\Bin\InventorBinFolder.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -34,6 +34,9 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autodesk.iLogic">
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,28 +51,25 @@
       <HintPath>$(InventorBinFolder)\Public Assemblies\Autodesk.Inventor.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Common">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Common.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Common.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Core">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Core.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Core.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Exec">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Exec.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Exec.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Interfaces">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Autodesk.iLogic.Plugin">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Plugin.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Runtime">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Runtime.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.Types">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.Types.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.Types.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.iLogic.UiBuilderCore">
-      <HintPath>$(InventorBinFolder)\Autodesk.iLogic.UiBuilderCore.dll</HintPath>
+      <HintPath>D:\Autodesk\Inventor\Inventor 2021\Bin\Autodesk.iLogic.UiBuilderCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

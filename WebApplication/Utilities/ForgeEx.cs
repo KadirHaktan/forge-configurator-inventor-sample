@@ -33,6 +33,9 @@ namespace WebApplication.Utilities
         /// </summary>
         public static ForgeConfiguration Validate(this ForgeConfiguration configuration)
         {
+            
+            configuration.ClientId = "FcuaA6cCAKd9jv7vmVBAcG8bR9NUZgBA";
+            configuration.ClientSecret = "CRWNxq4F01AGMBe0";
             if (string.IsNullOrEmpty(configuration.ClientId)) throw new ArgumentException("Forge Client ID is not provided.");
             if (string.IsNullOrEmpty(configuration.ClientSecret)) throw new ArgumentException("Forge Client Secret is not provided.");
 
