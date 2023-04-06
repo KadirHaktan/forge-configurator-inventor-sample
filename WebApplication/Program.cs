@@ -79,7 +79,7 @@ namespace WebApplication
                         // If deployed to a service like Heroku, need to listen on port defined in the environment, not the default one
                         if (!string.IsNullOrEmpty(port))
                         {
-                            webBuilder.UseUrls("http://*:" + port);
+                            webBuilder.UseUrls("https://codeoconfig.herokuapp.com/");
                             Log.Logger.Information($"PORT environment variable defined to:{port}");
                         }
                     });
