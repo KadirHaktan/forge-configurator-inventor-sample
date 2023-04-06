@@ -75,7 +75,7 @@ namespace WebApplication
                             options.Limits.MaxRequestBodySize = size;
                             options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
                         });
-                        var port = Environment.GetEnvironmentVariable("PORT");
+                        var port = Environment.GetEnvironmentVariable("PORT") ?? "5001";
                         // If deployed to a service like Heroku, need to listen on port defined in the environment, not the default one
                         if (!string.IsNullOrEmpty(port))
                         {
