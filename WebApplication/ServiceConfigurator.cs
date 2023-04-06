@@ -43,14 +43,14 @@ namespace WebApplication
 
         public static void ConfigureServices(IConfiguration Configuration, IServiceCollection services)
         {
-            services.AddCors(config => config.AddPolicy("react", policy =>
-            {
-                policy.AllowAnyHeader()
-                .AllowAnyOrigin()
-                .AllowAnyMethod();
-            }));
+            //services.AddCors(config => config.AddPolicy("react", policy =>
+            //{
+            //    policy.AllowAnyHeader()
+            //    .AllowAnyOrigin()
+            //    .AllowAnyMethod();
+            //}));
             services
-                .AddControllers()
+                .AddControllersWithViews()
                 .AddJsonOptions(options =>
                                 {
                                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -63,21 +63,21 @@ namespace WebApplication
             });
 
             // In production, the React files will be served from this directory
-            //services.AddSpaStaticFiles(configuration =>
-            //{
-            //    configuration.RootPath = "ClientApp/build";
-            //});
-
-            services.AddSwaggerGen();
-            services.AddSwaggerGen(c =>
+            services.AddSpaStaticFiles(configuration =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Implement Swagger UI",
-                    Description = "A simple example to Implement Swagger UI",
-                });
+                configuration.RootPath = "ClientApp/build";
             });
+
+            //services.AddSwaggerGen();
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "Implement Swagger UI",
+            //        Description = "A simple example to Implement Swagger UI",
+            //    });
+            //});
 
             services.AddHttpClient();
 

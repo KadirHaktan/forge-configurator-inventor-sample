@@ -103,7 +103,7 @@ namespace WebApplication
             }
 
 
-            app.UseCors("react");
+           // app.UseCors("react");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -111,7 +111,7 @@ namespace WebApplication
             // expose local cache as static files
             localCache.Serve(app);
 
-            //app.UseSpaStaticFiles();
+            app.UseSpaStaticFiles();
 
             // Use Serilog middleware to log ASP.NET requests. To not pollute logs with requests about
             // static file the middleware registered after middleware for serving static files.
@@ -127,20 +127,25 @@ namespace WebApplication
                 endpoints.MapHub<JobsHub>("/signalr/connection");
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
-            });
-
-            //app.UseSpa(spa =>
-            //{
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseReactDevelopmentServer(npmScript: "start");
-            //    }
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => {
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
             //});
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+
+                //else
+                //{
+                //    spa.Use
+                //}
+            });
         }
     }
 }
