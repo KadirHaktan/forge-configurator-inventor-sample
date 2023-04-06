@@ -25,5 +25,6 @@
       "applicationUrl": "http://localhost:33408",
       "sslPort": 44351
     }
-  }
+  },
+  "PORT": 5011  
 }
