@@ -28,6 +28,7 @@ using Autodesk.Forge.DesignAutomation;
 using WebApplication.Middleware;
 using WebApplication.State;
 using MigrationApp;
+using Microsoft.OpenApi.Models;
 
 namespace WebApplication
 {
@@ -42,8 +43,14 @@ namespace WebApplication
 
         public static void ConfigureServices(IConfiguration Configuration, IServiceCollection services)
         {
+            services.AddCors(config => config.AddPolicy("react", policy =>
+            {
+                policy.AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod();
+            }));
             services
-                .AddControllersWithViews()
+                .AddControllers()
                 .AddJsonOptions(options =>
                                 {
                                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -56,9 +63,20 @@ namespace WebApplication
             });
 
             // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/build";
+            //});
+
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
             {
-                configuration.RootPath = "ClientApp/build";
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Implement Swagger UI",
+                    Description = "A simple example to Implement Swagger UI",
+                });
             });
 
             services.AddHttpClient();

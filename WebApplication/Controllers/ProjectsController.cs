@@ -81,11 +81,11 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> CreateProject([FromForm]NewProjectModel projectModel)
         {
-            if (!_profileProvider.IsAuthenticated)
-            {
-                _logger.LogError("Attempt to create project for anonymous user");
-                return BadRequest();
-            }
+            //if (!_profileProvider.IsAuthenticated)
+            //{
+            //    _logger.LogError("Attempt to create project for anonymous user");
+            //    return BadRequest();
+            //}
 
             var projectName = Path.GetFileNameWithoutExtension(projectModel.package.FileName);
 
@@ -124,11 +124,11 @@ namespace WebApplication.Controllers
         [HttpDelete]
         public async Task<StatusCodeResult> DeleteProjects([FromBody] List<string> projectNameList)
         {
-            if (!_profileProvider.IsAuthenticated)
-            {
-                _logger.LogError("Attempt to delete projects for anonymous user");
-                return BadRequest();
-            }
+            //if (!_profileProvider.IsAuthenticated)
+            //{
+            //    _logger.LogError("Attempt to delete projects for anonymous user");
+            //    return BadRequest();
+            //}
 
             await _projectService.DeleteProjects(projectNameList);
 
