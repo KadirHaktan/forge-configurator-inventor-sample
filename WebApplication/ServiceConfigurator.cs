@@ -43,12 +43,12 @@ namespace WebApplication
 
         public static void ConfigureServices(IConfiguration Configuration, IServiceCollection services)
         {
-            //services.AddCors(config => config.AddPolicy("react", policy =>
-            //{
-            //    policy.AllowAnyHeader()
-            //    .AllowAnyOrigin()
-            //    .AllowAnyMethod();
-            //}));
+            services.AddCors(config => config.AddPolicy("any", policy =>
+            {
+                policy.AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod();
+            }));
             services
                 .AddControllersWithViews()
                 .AddJsonOptions(options =>
@@ -68,18 +68,19 @@ namespace WebApplication
                 configuration.RootPath = "ClientApp/build";
             });
 
-            //services.AddSwaggerGen();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo
-            //    {
-            //        Version = "v1",
-            //        Title = "Implement Swagger UI",
-            //        Description = "A simple example to Implement Swagger UI",
-            //    });
-            //});
+
 
             services.AddHttpClient();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Implement Swagger UI",
+                    Description = "A simple example to Implement Swagger UI",
+                });
+            });
 
             services.Configure<FormOptions>(x =>
             {

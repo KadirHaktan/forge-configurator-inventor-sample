@@ -16,27 +16,20 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-using System.Text.Json.Serialization;
 using Autodesk.Forge.Core;
-using Autodesk.Forge.DesignAutomation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MigrationApp;
 using Serilog;
 using WebApplication.Controllers;
 using WebApplication.Definitions;
 using WebApplication.Middleware;
 using WebApplication.Processing;
-using WebApplication.Services;
-using WebApplication.State;
-using WebApplication.Utilities;
 
 namespace WebApplication
 {
@@ -127,10 +120,12 @@ namespace WebApplication
                 endpoints.MapHub<JobsHub>("/signalr/connection");
             });
 
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => {
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
-            //});
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
+            });
+
 
             app.UseSpa(spa =>
             {
@@ -140,11 +135,6 @@ namespace WebApplication
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
-
-                //else
-                //{
-                //    spa.Use
-                //}
             });
         }
     }

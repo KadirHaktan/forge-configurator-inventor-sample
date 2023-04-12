@@ -74,6 +74,8 @@ namespace WebApplication
                             long size = sizeinMB * 1024 * 1024;
                             options.Limits.MaxRequestBodySize =  size;
                         });
+
+                        webBuilder.UseIIS();
                         var port = Environment.GetEnvironmentVariable("PORT");
                         // If deployed to a service like Heroku, need to listen on port defined in the environment, not the default one
                         if (!string.IsNullOrEmpty(port))
