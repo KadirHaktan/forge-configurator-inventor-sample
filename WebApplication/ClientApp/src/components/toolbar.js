@@ -20,7 +20,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadProfile } from '../actions/profileActions';
 import { getProfile, loginFailedShowing } from '../reducers/mainReducer';
-import UserDetails from './userDetails.js';
 import Typography from "@hig/typography";
 import ModalFail from './modalFail';
 import { showLoginFailed } from '../actions/uiFlagsActions';
@@ -30,7 +29,6 @@ import TopNav, {
   Logo,
   LogoText,
   Interactions,
-  ProfileAction,
   NavAction,
   Separator
 } from '@hig/top-nav';
@@ -93,11 +91,11 @@ export class Toolbar extends Component {
                     </p>
                   </div>
                 </NavAction>
-                <span id="ProfileActionHolder">
-                <ProfileAction avatarName={this.props.profile.name} avatarImage={this.props.profile.avatarUrl}>
-                  <UserDetails profile={this.props.profile} logout={this.logout} />
-                </ProfileAction>
-                </span>
+                {/*<span id="ProfileActionHolder">*/}
+                {/*<ProfileAction avatarName={this.props.profile.name} avatarImage={this.props.profile.avatarUrl}>*/}
+                {/*  <UserDetails profile={this.props.profile} logout={this.logout} />*/}
+                {/*</ProfileAction>*/}
+                {/*</span>*/}
               </Interactions>
             </React.Fragment>
           }

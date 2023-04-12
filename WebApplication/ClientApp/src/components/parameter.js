@@ -85,6 +85,8 @@ export class Parameter extends Component {
         if (this.props.parameter.errormessage) {
             parameterInputClassName += " error";
         }
+
+        
         if (this.props.parameter.units === "Boolean")
             return (
                 <div className="parameter checkbox">

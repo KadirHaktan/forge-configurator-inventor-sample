@@ -20,14 +20,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Surface from '@hig/surface';
 import './app.css';
-import Toolbar from './components/toolbar';
 import TabsContainer from './components/tabsContainer';
-import ProjectSwitcher from './components/projectSwitcher';
 import { showAdoptWithParamsFailed, fetchShowParametersChanged } from './actions/uiFlagsActions';
 import { detectToken } from './actions/profileActions';
 import ModalProgress from './components/modalProgress';
 import { adoptWithParamsFailed, embeddedModeEnabled, embeddedModeUrl, adoptWithParamsProgressShowing, errorData } from './reducers/mainReducer';
 import { adoptProjectWithParameters } from './actions/adoptWithParamsActions';
+
+import { fetchProjects, updateActiveProject } from './actions/projectListActions'
+import { fetchParameters } from './actions/parametersActions';
+
 
 export class App extends Component {
   constructor(props) {
@@ -39,19 +41,14 @@ export class App extends Component {
       this.props.fetchShowParametersChanged();
 
     if (this.props.embeddedModeUrl != null)
-      this.props.adoptProjectWithParameters(this.props.embeddedModeUrl);
+          this.props.adoptProjectWithParameters(this.props.embeddedModeUrl);
+
+    this.props.fetchProjects();
   }
 
   render () {
-    const showToolbar = !this.props.embeddedModeEnabled;
-
     return (
       <Surface className="fullheight" id="main" level={200}>
-        { showToolbar &&
-          <Toolbar>
-            <ProjectSwitcher />
-          </Toolbar>
-        }
         <TabsContainer/>
         {this.props.adoptWithParamsProgressShowing &&
           <ModalProgress
@@ -67,13 +64,14 @@ export class App extends Component {
 
 /* istanbul ignore next */
 export default connect(function (store) {
-  return {
+    return {
+    projectList: store.projectList,
     adoptWithParamsProgressShowing: adoptWithParamsProgressShowing(store),
     adoptWithParamsFailed: adoptWithParamsFailed(store),
     embeddedModeEnabled: embeddedModeEnabled(store),
     embeddedModeUrl: embeddedModeUrl(store),
     errorData: errorData(store)
   };}, {
-    showAdoptWithParamsFailed, adoptProjectWithParameters, fetchShowParametersChanged, detectToken
+    showAdoptWithParamsFailed, adoptProjectWithParameters, fetchShowParametersChanged, detectToken, fetchProjects, fetchParameters, updateActiveProject
 })(App);
 

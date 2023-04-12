@@ -57,6 +57,24 @@ export class ParametersContainer extends Component {
         this.props.hideModalProgress();
     }
 
+    //if (this.props.parameter.label === "PulloutHandle_Included" || this.props.parameter.label === "CornerWheels_Included" || this.props.parameter.label === "LabelDish_Included" || this.props.parameter.label === "LidStyle" || this.props.parameter.label === "ColourAndFinish") {}
+
+
+    getFilteredParameter(label){
+        return label === "PulloutHandle_Included" || label === "CornerWheels_Included" || label === "LabelDish_Included" || label === "LidStyle" || label === "ColourAndFinish" || label === "Width_Internal" || label === "Depth_Internal" || label === "Height_Internal"?label:""
+    }
+
+    renderSubParameterList(parameterList){
+       
+            const subParameterList=parameterList.filter(parameter=>this.getFilteredParameter(parameter.label))
+            console.log(subParameterList)
+            return subParameterList.map((parameter, index) =>
+                <Parameter parameter={parameter} key={index }/>
+                
+            )
+        
+    }
+
     render() {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
@@ -64,7 +82,9 @@ export class ParametersContainer extends Component {
         // if model adopted with warning - then button should became white and have a tooltip with warning details
         const adoptWarning = this.props.adoptWarning;
         const tooltipProps = adoptWarning ? { openOnHover: true, content: () => <div className="warningButtonTooltip">{ adoptWarning }</div>  } : { open: false };
-        const buttonProps = adoptWarning ? { type:"secondary", icon: <Alert24 style={ { color: "orange" }} /> } : { type: "primary" };
+        const buttonProps = adoptWarning ? { type: "secondary", icon: <Alert24 style={{ color: "orange" }} /> } : { type: "primary" };
+        
+       
 
         return (
             <div className="parametersContainer">
@@ -72,9 +92,8 @@ export class ParametersContainer extends Component {
                 </div>
                 <div className="parameters">
                 {
-                    parameterList ?
-                        parameterList.map((parameter, index) => (<Parameter key={index} parameter={parameter}/>))
-                        : "No parameters"
+                    
+                    parameterList ? this.renderSubParameterList(parameterList):"No parameters"
                 }
                 </div>
                 <hr className="parametersSeparator"/>

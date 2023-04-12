@@ -18,16 +18,11 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Tabs, { Tab } from "@hig/tabs";
-import ProjectList from './projectList';
 import ForgeView from './forgeView';
 import ParametersContainer from './parametersContainer';
-import Bom from './bom';
-import Downloads from './downloads';
 import './tabs.css';
 import { embeddedModeEnabled, activeTabIndex } from '../reducers/mainReducer';
 import { updateActiveTabIndex } from '../actions/uiFlagsActions';
-import Drawing from './drawing';
 
 export class TabsContainer extends Component {
 
@@ -37,28 +32,12 @@ export class TabsContainer extends Component {
 
     render() {
 
-        const idx = this.props.activeTabIndex;
-        const showProjectsTab = this.props.embeddedModeEnabled;
+       // const idx = this.props.activeTabIndex;
+       // const showProjectsTab = this.props.embeddedModeEnabled;
         const showParameters = this.props.embeddedModeEnabled;
 
         return (
-            <div className="tabsContainer">
-            <Tabs
-              className="fullheight"
-              align="center"
-              showTabDivider={false}
-              onTabChange={(index) => { this.onTabChange(index); }}
-              onTabClose={() => {}}
-              activeTabIndex={idx}
-            >
-              {!showProjectsTab &&
-                <Tab label="Projects">
-                  <div id="project-list" className="tabContent fullheight">
-                    <ProjectList/>
-                  </div>
-                </Tab>
-              }
-              <Tab label="Model" >
+            
                 <div id="model" className='tabContent fullheight'>
                   <div className='inRow fullheight'>
                     { !showParameters &&
@@ -67,24 +46,7 @@ export class TabsContainer extends Component {
                     <ForgeView/>
                   </div>
                 </div>
-              </Tab>
-              <Tab label="BOM">
-                <div id="bom" className="tabContent fullheight">
-                  <Bom/>
-                </div>
-              </Tab>
-              <Tab label="Drawing">
-                <div id="drawing" className="tabContent fullheight">
-                  <Drawing/>
-                </div>
-              </Tab>
-              <Tab label="Downloads">
-                <div id="downloads" className="tabContent fullheight">
-                  <Downloads/>
-                </div>
-              </Tab>
-            </Tabs>
-          </div>
+        
         );
     }
 }

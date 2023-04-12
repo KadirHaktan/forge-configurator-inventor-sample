@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////
+﻿/////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
 // Written by Forge Design Automation team for Inventor
 //
@@ -72,13 +72,13 @@ export class ProjectList extends Component {
   }
 
   render() {
-    const uploadButtonVisible = this.props.isLoggedIn;
+    const uploadButtonVisible = true
     const checkedProjects = this.props.checkedProjects && this.props.checkedProjects.length > 0;
     const deleteButtonVisible = this.props.isLoggedIn && checkedProjects;
-    const uploadContainerClass =  uploadButtonVisible ? "" : "hidden";
+    const uploadContainerClass = "";
     const deleteContainerClass = deleteButtonVisible ? "" : "hidden";
-    const spacerClass = (uploadButtonVisible && deleteButtonVisible) ? "verticalSpacer" : "verticalSpacer hidden";
-    const actionButtonContainerClass = uploadButtonVisible ? "actionButtonContainer" : "actionButtonContainer hidden";
+    const spacerClass = "verticalSpacer";
+      const actionButtonContainerClass = "actionButtonContainer";
 
     const showUploadProgress = this.props.uploadProgressShowing;
 
