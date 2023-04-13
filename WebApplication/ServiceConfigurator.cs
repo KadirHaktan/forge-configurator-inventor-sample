@@ -28,7 +28,6 @@ using Autodesk.Forge.DesignAutomation;
 using WebApplication.Middleware;
 using WebApplication.State;
 using MigrationApp;
-using Microsoft.OpenApi.Models;
 
 namespace WebApplication
 {
@@ -72,15 +71,15 @@ namespace WebApplication
 
             services.AddHttpClient();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Implement Swagger UI",
-                    Description = "A simple example to Implement Swagger UI",
-                });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "Implement Swagger UI",
+            //        Description = "A simple example to Implement Swagger UI",
+            //    });
+            //});
 
             services.Configure<FormOptions>(x =>
             {

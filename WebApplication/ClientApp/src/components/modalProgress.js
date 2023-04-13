@@ -22,12 +22,8 @@ import { connect } from 'react-redux';
 import Modal from '@hig/modal';
 import ProgressBar from '@hig/progress-bar';
 import Typography from "@hig/typography";
-import Spacer from "@hig/spacer";
 import './modalProgress.css';
 import merge from "lodash.merge";
-import CreditCost from './creditCost';
-import Button from '@hig/button';
-import ReportUrl from './reportUrl';
 import { getStats } from '../reducers/mainReducer';
 
 export class ModalProgress extends Component {
@@ -100,29 +96,14 @@ export class ModalProgress extends Component {
                         <Typography>
                         {this.props.label ? this.props.label : "Missing label."}
                         </Typography>
-                        {(!done) &&
-                            <ProgressBar className="modalProgress"/>
+                        {(!done)?
+                            <ProgressBar className="modalProgress"/>:
+                            this.props.onClose()
                         }
                     </div>
                 </div>
                 {(done) &&
-                <React.Fragment>
-                    {withWarnings && <div id='warningMsg'>
-                        <Typography>{this.props.warningMsg}</Typography>
-                        <Spacer spacing='m'/>
-                    </div>}
-                    <CreditCost statsKey={this.props.statsKey}/>
-                    <ReportUrl/>
-                    <div id="modalDone">
-                        <Button className="button" style={
-                            { width: '116px', height: '36px', borderRadius: '2px', marginLeft: '12px'}}
-                            type="primary"
-                            size="small"
-                            title="Ok"
-                            onClick={this.props.onClose}
-                        />
-                    </div>
-                </React.Fragment>
+                 <></>
               }
           </Modal>
         );

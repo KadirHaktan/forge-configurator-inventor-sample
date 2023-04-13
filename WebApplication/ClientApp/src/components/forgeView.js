@@ -73,6 +73,18 @@ export class ForgeView extends Component {
 
                 viewer.removeEventListener(Autodesk.Viewing.EXTENSION_LOADED_EVENT);
             }
+
+            const explodeExtension = viewer.getExtension('Autodesk.Explode');
+            const sectionExtension = viewer.getExtension('Autodesk.Section');
+            const modelExtension = viewer.getExtension('Autodesk.ModelStructure');
+            const propertiesExtension = viewer.getExtension('Autodesk.PropertiesManager');
+          
+
+            explodeExtension.unload();
+            sectionExtension.unload();
+            modelExtension.unload();
+            propertiesExtension.unload();
+
         });
 
         // skip loading of svf when there is no active project svf

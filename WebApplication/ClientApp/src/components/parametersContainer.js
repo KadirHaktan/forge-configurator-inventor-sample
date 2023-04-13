@@ -118,16 +118,16 @@ export class ParametersContainer extends Component {
                         </Tooltip>
                     </div>
 
-                    {this.props.modalProgressShowing &&
-                        <ModalProgress
+                    {this.props.modalProgressShowing?
+                        (<ModalProgress
                             open={this.props.modalProgressShowing}
-                            title="Updating Project"
+                            title="Updating Model"
                             doneTitle="Update Finished"
                             label={this.props.activeProject.id}
                             icon="/Assembly_icon.svg"
                             onClose={() => this.onModalProgressClose()}
                             warningMsg={this.props.adoptWarning}
-                        />
+                        />):(<></>)
                     }
                     {this.props.updateFailedShowing &&
                         <ModalFail

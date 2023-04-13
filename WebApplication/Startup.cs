@@ -120,11 +120,11 @@ namespace WebApplication
                 endpoints.MapHub<JobsHub>("/signalr/connection");
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
+            //});
 
 
             app.UseSpa(spa =>
