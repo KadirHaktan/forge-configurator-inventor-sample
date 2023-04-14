@@ -36,9 +36,7 @@ export class App extends Component {
     super(props);
     props.detectToken();
   }
-    componentDidMount() {
-
-       
+  componentDidMount() {
     if (!this.props.embeddedModeEnabled)
       this.props.fetchShowParametersChanged();
 
