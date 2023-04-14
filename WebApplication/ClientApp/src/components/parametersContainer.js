@@ -57,8 +57,6 @@ export class ParametersContainer extends Component {
         this.props.hideModalProgress();
     }
 
-    //if (this.props.parameter.label === "PulloutHandle_Included" || this.props.parameter.label === "CornerWheels_Included" || this.props.parameter.label === "LabelDish_Included" || this.props.parameter.label === "LidStyle" || this.props.parameter.label === "ColourAndFinish") {}
-
 
     getFilteredParameter(label){
         return label === "PulloutHandle_Included" || label === "CornerWheels_Included" || label === "LabelDish_Included" || label === "LidStyle" || label === "ColourAndFinish"?label:""

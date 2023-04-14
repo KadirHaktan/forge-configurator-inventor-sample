@@ -61,6 +61,10 @@ export class ForgeView extends Component {
         // orient camera in the same way as it's on the thumbnail
         // corresponding to ViewOrientationTypeEnum.kIsoTopRightViewOrientation
         const viewer = this.viewer;
+        const forgeSpinner = document.getElementsByClassName("forge-spinner")[0]
+        console.log(forgeSpinner)
+        const image = forgeSpinner.children[1]
+        image.src = "";
         this.viewer.addEventListener(Autodesk.Viewing.EXTENSION_LOADED_EVENT, (event) => {
 
             const viewCubeExtensionId = "Autodesk.ViewCubeUi";
@@ -78,6 +82,10 @@ export class ForgeView extends Component {
             const sectionExtension = viewer.getExtension('Autodesk.Section');
             const modelExtension = viewer.getExtension('Autodesk.ModelStructure');
             const propertiesExtension = viewer.getExtension('Autodesk.PropertiesManager');
+
+           
+
+         
           
 
             explodeExtension.unload();
@@ -96,12 +104,18 @@ export class ForgeView extends Component {
         );
     }
 
+    componentDidMount() {
+       
+    }
+
     componentDidUpdate(prevProps) {
         if (Autodesk && (this.props.activeProject.svf !== prevProps.activeProject.svf)) {
             Autodesk.Viewing.Document.load(
                 this.getSvfUrl(), this.onDocumentLoadSuccess.bind(this), () => {}
             );
         }
+
+       
     }
 
     componentWillUnmount() {
