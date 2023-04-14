@@ -61,7 +61,7 @@ export class ParametersContainer extends Component {
 
 
     getFilteredParameter(label){
-        return label === "PulloutHandle_Included" || label === "CornerWheels_Included" || label === "LabelDish_Included" || label === "LidStyle" || label === "ColourAndFinish" || label === "Width_Internal" || label === "Depth_Internal" || label === "Height_Internal"?label:""
+        return label === "PulloutHandle_Included" || label === "CornerWheels_Included" || label === "LabelDish_Included" || label === "LidStyle" || label === "ColourAndFinish"?label:""
     }
 
     renderSubParameterList(parameterList){
