@@ -48,7 +48,7 @@ export class App extends Component {
 
   render () {
     return (
-      <Surface className="fullheight" id="main" level={200}>
+        <Surface className="fullheight" id="main" level={200}>
         <TabsContainer/>
         {this.props.adoptWithParamsProgressShowing &&
           <ModalProgress

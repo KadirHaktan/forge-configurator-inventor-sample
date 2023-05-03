@@ -26,6 +26,12 @@ import { updateActiveTabIndex } from '../actions/uiFlagsActions';
 
 export class TabsContainer extends Component {
 
+
+    constructor(props) {
+        super(props);
+        this.state = { open: this.props.embeddedModeEnabled };
+    }
+
     onTabChange(index) {
       this.props.updateActiveTabIndex(index);
     }
@@ -34,14 +40,15 @@ export class TabsContainer extends Component {
 
        // const idx = this.props.activeTabIndex;
        // const showProjectsTab = this.props.embeddedModeEnabled;
-        const showParameters = this.props.embeddedModeEnabled;
+        const showParameters = this.state.open
 
         return (
             
-                <div id="model" className='tabContent fullheight'>
-                  <div className='inRow fullheight'>
-                    { !showParameters &&
-                      <ParametersContainer/>
+            <div id="model" className='tabContent fullheight'>
+            
+                <div className='inRow fullheight'>
+                    {!showParameters &&
+                        <ParametersContainer />
                     }
                     <ForgeView/>
                   </div>

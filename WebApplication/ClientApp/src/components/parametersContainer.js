@@ -1,3 +1,4 @@
+/// <reference path="bom.js" />
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
 // Written by Forge Design Automation team for Inventor
@@ -31,7 +32,32 @@ import ModalProgress from './modalProgress';
 import ModalFail from './modalFail';
 import { fullWarningMsg } from '../utils/conversion';
 
+
 export class ParametersContainer extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            containerWidth:'296px'
+        }
+
+        this.handleMouseEnter = this.handleMouseEnter.bind(this)
+        this.handleMouseLeave = this.handleMouseLeave.bind(this)
+       
+    }
+
+    handleMouseEnter() {
+        if (this.state.containerWidth === '10px') {
+            this.setState({
+                containerWidth: '296px'
+            })
+        }
+    }
+
+    handleMouseLeave() {
+        this.setState({
+            containerWidth: '10px'
+        })
+    }
 
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
@@ -73,6 +99,9 @@ export class ParametersContainer extends Component {
         
     }
 
+
+    
+
     render() {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
@@ -85,10 +114,11 @@ export class ParametersContainer extends Component {
        
 
         return (
-            <div className="parametersContainer">
+            <div id="parametersContainer" style={{ width: this.state.containerWidth }} className="parametersContainer" onMouseOver={this.handleMouseEnter} onMouseOut={this.handleMouseLeave}>
                 <div className="pencilContainer">
+                   
                 </div>
-                <div className="parameters">
+                <div className="parameters" id="parameterList">
                 {
                     
                     parameterList ? this.renderSubParameterList(parameterList):"No parameters"
