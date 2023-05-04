@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) Autodesk, Inc. All rights reserved
 * Written by Forge Design Automation team for Inventor
 *
@@ -22,6 +22,7 @@
     width: 296px;
     background-color: white;
 }
+
 
 .parameters {
     overflow: auto;
@@ -106,6 +107,27 @@ div.changedOnUpdate-input-wrapper {
     font-family: ArtifaktElement, sans-serif;
     font-weight: 300;
     white-space: pre-wrap;
+}
+
+@media only screen and (max-width: 600px) {
+    .parametersContainer {
+        width: 100%;
+        /* diğer küçük ekran stilleri */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .parametersContainer {
+        width: 50%;
+        /* diğer orta boy ekran stilleri */
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .parametersContainer {
+        width: 25%;
+        /* diğer büyük ekran stilleri */
+    }
 }
 
 /* trick to change SVG color. https://stackoverflow.com/a/49627345 

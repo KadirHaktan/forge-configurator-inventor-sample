@@ -37,7 +37,8 @@ export class ParametersContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            containerWidth:'296px'
+            containerWidth: '296px',
+            isOpen: true
         }
 
         this.handleMouseEnter = this.handleMouseEnter.bind(this)
@@ -46,28 +47,48 @@ export class ParametersContainer extends Component {
     }
 
     handleMouseEnter() {
-        if (this.state.containerWidth === '10px') {
-            this.setState({
-                containerWidth: '296px'
-            })
-        }
+        this.setState({
+            containerWidth: '296px',
+            isOpen:true
+        })
     }
 
     handleMouseLeave() {
         this.setState({
-            containerWidth: '10px'
+            containerWidth: '296px',
+            isOpen:false
         })
+    }
+
+    updateContainerWidth() {
+        const screenWidth = window.innerWidth;
+        const newContainerWidth = screenWidth < 1440 ? '100%' : '296px';
+
+        if (this.state.containerWidth !== newContainerWidth) {
+            this.setState({
+                containerWidth: newContainerWidth,
+            });
+        }
     }
 
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
+        this.updateContainerWidth();
+        window.addEventListener('resize', this.updateContainerWidth.bind(this));
     }
 
     componentDidUpdate(prevProps) {
         // fetch parameters when params UI was active before projects initialized
         if (this.props.activeProject.id !== prevProps.activeProject.id)
             this.props.fetchParameters(this.props.activeProject.id);
+
+       
     }
+
+    //componentWillUnmount() {
+    //    window.removeEventListener('resize', this.updateContainerWidth.bind(this));
+    //}
+
 
     updateClicked() {
         this.props.updateModelWithParameters(this.props.activeProject.id, this.props.projectUpdateParameters);
@@ -114,60 +135,84 @@ export class ParametersContainer extends Component {
        
 
         return (
-            <div id="parametersContainer" style={{ width: this.state.containerWidth }} className="parametersContainer" onMouseOver={this.handleMouseEnter} onMouseOut={this.handleMouseLeave}>
-                <div className="pencilContainer">
-                   
-                </div>
-                <div className="parameters" id="parameterList">
+            <>
                 {
-                    
-                    parameterList ? this.renderSubParameterList(parameterList):"No parameters"
+                    !this.state.isOpen && (
+                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter} onTouchStart={this.handleMouseEnter}>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    )
                 }
-                </div>
-                <hr className="parametersSeparator"/>
-                <div className={buttonsContainerClass}>
-                    <Button style={{width: '125px'}}
-                        size="standard"
-                        title="Reset"
-                        type="secondary"
-                        width="grow"
-                        onClick={() => {this.props.resetParameters(this.props.activeProject.id, this.props.projectSourceParameters);}}
-                    />
-                    <div style={{width: '14px'}}/>
-                    <div width="grow" /*this div makes the size of the Button below not to be broken by the encapsulating Tooltip*/>
-                        <Tooltip { ...tooltipProps } className="paramTooltip" anchorPoint="top-center">
-                            <Button id="updateButton"
-                                style={{width: '125px'}}
-                                { ...buttonProps }
-                                size="standard"
-                                title= "Update"
-                                width="grow"
-                                onClick={() => this.updateClicked()}/>
-                        </Tooltip>
-                    </div>
+                
+                {
+                    this.state.isOpen && (
+                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave} onTouchEnd={this.handleMouseLeave}>
+                            <div className="pencilContainer" style={{
+                                position: 'absolute',
+                                top: 0,
+                                right: 0,
+                                margin: '5px'
+                            }}>
+                            </div>
+                            <div className="parameters" id="parameterList">
+                                {
 
-                    {this.props.modalProgressShowing?
-                        (<ModalProgress
-                            open={this.props.modalProgressShowing}
-                            title="Updating Model"
-                            doneTitle="Update Finished"
-                            label={this.props.activeProject.id}
-                            icon="/Assembly_icon.svg"
-                            onClose={() => this.onModalProgressClose()}
-                            warningMsg={this.props.adoptWarning}
-                        />):(<></>)
-                    }
-                    {this.props.updateFailedShowing &&
-                        <ModalFail
-                            open={this.props.updateFailedShowing}
-                            title="Update Failed"
-                            contentName="Project:"
-                            label={this.props.activeProject.id}
-                            onClose={() => this.onUpdateFailedCloseClick()}
-                            errorData={this.props.errorData}/>
-                    }
-                </div>
-            </div>
+                                    parameterList ? this.renderSubParameterList(parameterList) : "No parameters"
+                                }
+                            </div>
+
+
+
+                            <hr className="parametersSeparator" />
+                            <div className={buttonsContainerClass}>
+                                <Button style={{ width: '125px' }}
+                                    size="standard"
+                                    title="Reset"
+                                    type="secondary"
+                                    width="grow"
+                                    onClick={() => { this.props.resetParameters(this.props.activeProject.id, this.props.projectSourceParameters); }}
+                                />
+                                <div style={{ width: '14px' }} />
+                                <div width="grow" /*this div makes the size of the Button below not to be broken by the encapsulating Tooltip*/>
+                                    <Tooltip {...tooltipProps} className="paramTooltip" anchorPoint="top-center">
+                                        <Button id="updateButton"
+                                            style={{ width: '125px' }}
+                                            {...buttonProps}
+                                            size="standard"
+                                            title="Update"
+                                            width="grow"
+                                            onClick={() => this.updateClicked()} />
+                                    </Tooltip>
+                                </div>
+
+                                {this.props.modalProgressShowing ?
+                                    (<ModalProgress
+                                        open={this.props.modalProgressShowing}
+                                        title="Updating Model"
+                                        doneTitle="Update Finished"
+                                        label={this.props.activeProject.id}
+                                        icon="/Assembly_icon.svg"
+                                        onClose={() => this.onModalProgressClose()}
+                                        warningMsg={this.props.adoptWarning}
+                                    />) : (<></>)
+                                }
+                                {this.props.updateFailedShowing &&
+                                    <ModalFail
+                                        open={this.props.updateFailedShowing}
+                                        title="Update Failed"
+                                        contentName="Project:"
+                                        label={this.props.activeProject.id}
+                                        onClose={() => this.onUpdateFailedCloseClick()}
+                                        errorData={this.props.errorData} />
+                                }
+                            </div>
+                        </div>
+                    )
+                }
+              
+            
+            </>
+           
         );
     }
 }
