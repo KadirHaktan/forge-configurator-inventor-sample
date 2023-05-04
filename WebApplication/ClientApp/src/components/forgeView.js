@@ -143,7 +143,9 @@ export class ForgeView extends Component {
 
     onDocumentLoadSuccess(viewerDocument) {
         const defaultModel = viewerDocument.getRoot().getDefaultGeometry();
-        this.viewer.loadDocumentNode(viewerDocument, defaultModel);
+        this.viewer.loadDocumentNode(viewerDocument, defaultModel).then(() => {
+            this.viewer.fitToView();
+        })
     }
 
     render() {
