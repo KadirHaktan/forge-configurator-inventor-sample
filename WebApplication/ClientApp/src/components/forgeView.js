@@ -36,6 +36,12 @@ export class ForgeView extends Component {
       this.viewer = null;
     }
 
+    resizeViewer() {
+        if (this.viewer) {
+            this.viewer.resize();
+        }
+    }
+
     handleScriptLoad() {
 
         const options = repo.hasAccessToken() ?
@@ -51,6 +57,7 @@ export class ForgeView extends Component {
         //this.viewer.debugEvents(true);
 
         Autodesk.Viewing.Initializer(options, this.handleViewerInit.bind(this));
+        window.addEventListener("resize", this.resizeViewer.bind(this));
     }
 
     handleViewerInit() {
@@ -105,7 +112,7 @@ export class ForgeView extends Component {
     }
 
     componentDidMount() {
-       
+        this.resizeViewer();
     }
 
     componentDidUpdate(prevProps) {
@@ -114,6 +121,8 @@ export class ForgeView extends Component {
                 this.getSvfUrl(), this.onDocumentLoadSuccess.bind(this), () => {}
             );
         }
+
+        this.resizeViewer();
 
        
     }
@@ -124,6 +133,8 @@ export class ForgeView extends Component {
             this.viewer = null;
             Autodesk.Viewing.shutdown();
         }
+
+        window.removeEventListener("resize", this.resizeViewer.bind(this));
     }
 
     getSvfUrl() {

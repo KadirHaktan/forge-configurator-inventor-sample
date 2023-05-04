@@ -138,7 +138,7 @@ export class ParametersContainer extends Component {
             <>
                 {
                     !this.state.isOpen && (
-                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter} onTouchStart={this.handleMouseEnter}>
+                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter}>
                             <i className="fa-solid fa-arrow-left"></i>
                         </button>
                     )
@@ -146,7 +146,7 @@ export class ParametersContainer extends Component {
                 
                 {
                     this.state.isOpen && (
-                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave} onTouchEnd={this.handleMouseLeave}>
+                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave}>
                             <div className="pencilContainer" style={{
                                 position: 'absolute',
                                 top: 0,

@@ -29,3 +29,15 @@
 .modelContainer {
     width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .viewer {
+        border-width: 4px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .viewer {
+        border-width: 2px;
+    }
+}
