@@ -139,7 +139,7 @@ export class ParametersContainer extends Component {
                 {
                     !this.state.isOpen && (
                         <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter} onTouchStart={this.handleMouseEnter}>
-                            <i class="fa-solid fa-arrow-left"></i>
+                            <i className="fa-solid fa-arrow-left"></i>
                         </button>
                     )
                 }
