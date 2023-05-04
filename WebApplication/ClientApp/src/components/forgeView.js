@@ -37,7 +37,10 @@ export class ForgeView extends Component {
     }
 
     resizeViewer() {
-        if (this.viewer) {
+        if (this.viewer && this.viewerDiv.current) {
+            const container = this.viewerDiv.current;
+            container.style.width = '100%';
+            container.style.height = '100%';
             this.viewer.resize();
         }
     }
