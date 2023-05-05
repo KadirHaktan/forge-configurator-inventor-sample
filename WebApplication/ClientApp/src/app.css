@@ -48,3 +48,12 @@ html, body {
     width: 5px;
 }
 
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+    /* İlgili CSS düzenlemeleri */
+}
+
+/* Samsung Galaxy A52 */
+@media only screen and (min-device-width: 360px) and (max-device-width: 800px) and (-webkit-device-pixel-ratio: 3) {
+    /* İlgili CSS düzenlemeleri */
+}
+
