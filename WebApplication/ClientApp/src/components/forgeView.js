@@ -41,7 +41,9 @@ export class ForgeView extends Component {
             const container = this.viewerDiv.current;
             container.style.width = '100%';
             container.style.height = '100%';
-            this.viewer.resize();
+            setTimeout(() => {
+                this.viewer.resize()
+            },100)
         }
     }
 
@@ -72,7 +74,6 @@ export class ForgeView extends Component {
         // corresponding to ViewOrientationTypeEnum.kIsoTopRightViewOrientation
         const viewer = this.viewer;
         const forgeSpinner = document.getElementsByClassName("forge-spinner")[0]
-        console.log(forgeSpinner)
         const image = forgeSpinner.children[1]
         image.src = "";
         this.viewer.addEventListener(Autodesk.Viewing.EXTENSION_LOADED_EVENT, (event) => {

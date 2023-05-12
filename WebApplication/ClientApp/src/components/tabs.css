@@ -39,6 +39,7 @@
 .inRow {
     display: flex;
     flex-direction: row;
+   
 }
 
 /* set style for an element made by React component */
