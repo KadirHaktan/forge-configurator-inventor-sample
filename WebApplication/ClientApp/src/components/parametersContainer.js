@@ -60,6 +60,22 @@ export class ParametersContainer extends Component {
         })
     }
 
+    handleToggle(e) {
+        if ('ontouchstart' in window) {
+            // Mobil cihazlar
+            this.setState(prevState => ({
+                isOpen: !prevState.isOpen
+            }));
+        } else {
+            // Masaüstü cihazlar
+            const isOpen = e.type === 'mouseenter';
+            this.setState({
+                isOpen: isOpen
+            });
+        }
+    }
+
+
     updateContainerWidth() {
         const screenWidth = window.innerWidth;
         const newContainerWidth = screenWidth < 1440 ? '100%' : '296px';
@@ -138,7 +154,7 @@ export class ParametersContainer extends Component {
             <>
                 {
                     !this.state.isOpen && (
-                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter}>
+                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter} onTouchStart={this.handleMouseEnter} >
                             <i className="fa-solid fa-arrow-left"></i>
                         </button>
                     )
@@ -146,7 +162,7 @@ export class ParametersContainer extends Component {
                 
                 {
                     this.state.isOpen && (
-                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave}>
+                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave} onTouchCancel={this.handleMouseLeave}>
                             <div className="pencilContainer" style={{
                                 position: 'absolute',
                                 top: 0,
