@@ -37,60 +37,30 @@ export class ParametersContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            containerWidth: '296px',
-            isOpen: true
+            isOpen: false
         }
 
-        this.handleMouseEnter = this.handleMouseEnter.bind(this)
-        this.handleMouseLeave = this.handleMouseLeave.bind(this)
+        this.showParametersContainer = this.showParametersContainer.bind(this)
+        this.hideParametersContainer = this.hideParametersContainer.bind(this)
        
     }
 
-    handleMouseEnter() {
+    showParametersContainer() {
         this.setState({
-            containerWidth: '296px',
             isOpen:true
         })
     }
 
-    handleMouseLeave() {
+    hideParametersContainer() {
         this.setState({
-            containerWidth: '296px',
             isOpen:false
         })
     }
 
-    handleToggle(e) {
-        if ('ontouchstart' in window) {
-            // Mobil cihazlar
-            this.setState(prevState => ({
-                isOpen: !prevState.isOpen
-            }));
-        } else {
-            // Masaüstü cihazlar
-            const isOpen = e.type === 'mouseenter';
-            this.setState({
-                isOpen: isOpen
-            });
-        }
-    }
-
-
-    updateContainerWidth() {
-        const screenWidth = window.innerWidth;
-        const newContainerWidth = screenWidth < 1440 ? '100%' : '296px';
-
-        if (this.state.containerWidth !== newContainerWidth) {
-            this.setState({
-                containerWidth: newContainerWidth,
-            });
-        }
-    }
-
+   
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
-        this.updateContainerWidth();
-        window.addEventListener('resize', this.updateContainerWidth.bind(this));
+       
     }
 
     componentDidUpdate(prevProps) {
@@ -154,15 +124,15 @@ export class ParametersContainer extends Component {
             <>
                 {
                     !this.state.isOpen && (
-                        <button className="btn btn-primary  btn-sm configurator-button" onMouseEnter={this.handleMouseEnter} onTouchStart={this.handleMouseEnter} >
-                            <i className="fa-solid fa-arrow-left"></i>
+                        <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}  >
+                            <i className={`fa-solid fa-arrow-${innerWidth <876 ?'down':'right'}`}></i>
                         </button>
                     )
                 }
                 
                 {
                     this.state.isOpen && (
-                        <div style={{ position: 'relative', width: this.state.containerWidth }} className="parametersContainer" onMouseLeave={this.handleMouseLeave} onTouchCancel={this.handleMouseLeave}>
+                        <div style={{ position: 'relative' }} className="parametersContainer"  >
                             <div className="pencilContainer" style={{
                                 position: 'absolute',
                                 top: 0,
@@ -171,10 +141,11 @@ export class ParametersContainer extends Component {
                             }}>
                             </div>
                             <div className="parameters" id="parameterList">
-                                {
-
-                                    parameterList ? this.renderSubParameterList(parameterList) : "No parameters"
-                                }
+                                <div className="btn-container">
+                                    <button className="btn btn-primary btn-sm" onClick={this.hideParametersContainer}>
+                                        <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'up' : 'left'}`}></i></button>
+                                </div>
+                                {parameterList ? this.renderSubParameterList(parameterList) : "No parameters"}
                             </div>
 
 
