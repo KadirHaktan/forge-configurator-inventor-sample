@@ -42,6 +42,12 @@
    
 }
 
+@media only screen and (max-width: 876px) {
+    .inRow {
+        flex-direction: column;
+    }
+}
+
 /* set style for an element made by React component */
 .fullheight__content {
     overflow: hidden;

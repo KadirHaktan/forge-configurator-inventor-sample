@@ -18,8 +18,7 @@
 
 .parametersContainer {
     display: flex;
-    flex-flow: column;
-    width: 296px;
+    flex-direction:column;
     background-color: white;
 }
 
@@ -100,6 +99,11 @@ div.changedOnUpdate-input-wrapper {
     color: red;
 }
 
+.btn-container{
+   display:flex;
+   flex-direction:row-reverse;
+}
+
 .warningButtonTooltip {
     margin: 8px;
     width: 280px;
@@ -109,26 +113,18 @@ div.changedOnUpdate-input-wrapper {
     white-space: pre-wrap;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 876px) {
     .parametersContainer {
         width: 100%;
-        /* diğer küçük ekran stilleri */
+    }
+
+    .inRow .fullheight{
+        
+        flex-direction:column;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .parametersContainer {
-        width: 50%;
-        /* diğer orta boy ekran stilleri */
-    }
-}
 
-@media only screen and (min-width: 992px) {
-    .parametersContainer {
-        width: 25%;
-        /* diğer büyük ekran stilleri */
-    }
-}
 
 /* trick to change SVG color. https://stackoverflow.com/a/49627345 
 .buttonsContainer svg path {
