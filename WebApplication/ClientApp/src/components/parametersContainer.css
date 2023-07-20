@@ -117,11 +117,6 @@ div.changedOnUpdate-input-wrapper {
     .parametersContainer {
         width: 100%;
     }
-
-    .inRow .fullheight{
-        
-        flex-direction:column;
-    }
 }
 
 

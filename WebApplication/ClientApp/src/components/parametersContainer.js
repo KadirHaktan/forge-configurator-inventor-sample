@@ -37,7 +37,8 @@ export class ParametersContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isOpen: false
+           isOpen: false,
+           innerWidth: window.innerWidth
         }
 
         this.showParametersContainer = this.showParametersContainer.bind(this)
@@ -60,20 +61,23 @@ export class ParametersContainer extends Component {
    
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
-       
+        window.addEventListener('resize', this.handleResize);
+
     }
 
     componentDidUpdate(prevProps) {
         // fetch parameters when params UI was active before projects initialized
         if (this.props.activeProject.id !== prevProps.activeProject.id)
-            this.props.fetchParameters(this.props.activeProject.id);
-
-       
+            this.props.fetchParameters(this.props.activeProject.id);  
     }
 
-    //componentWillUnmount() {
-    //    window.removeEventListener('resize', this.updateContainerWidth.bind(this));
-    //}
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    handleResize = () => {
+        this.setState({ innerWidth: window.innerWidth });
+    }
 
 
     updateClicked() {
@@ -112,6 +116,7 @@ export class ParametersContainer extends Component {
     render() {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
+        const { innerWidth } = this.state;
 
         // if model adopted with warning - then button should became white and have a tooltip with warning details
         const adoptWarning = this.props.adoptWarning;
@@ -125,7 +130,7 @@ export class ParametersContainer extends Component {
                 {
                     !this.state.isOpen && (
                         <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}  >
-                            <i className={`fa-solid fa-arrow-${innerWidth <876 ?'down':'right'}`}></i>
+                            <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i>
                         </button>
                     )
                 }
