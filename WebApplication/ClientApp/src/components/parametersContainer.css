@@ -18,10 +18,13 @@
 
 .parametersContainer {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     background-color: white;
 }
 
+.configurator-button {
+    border-radius: 0;
+}
 
 .parameters {
     overflow: auto;
@@ -50,18 +53,18 @@
     line-height: 18px;
 }
 
-.parameter.checkbox {
-    padding-bottom: 32px;
-    height: 20px;
-    display: flex;
-    flex-flow: row;
-}
+    .parameter.checkbox {
+        padding-bottom: 32px;
+        height: 20px;
+        display: flex;
+        flex-flow: row;
+    }
 
-.parameter.checkboxtext {
-    padding-left: 12px;
-    font-size: 14px;
-    line-height: 16px;
-}
+    .parameter.checkboxtext {
+        padding-left: 12px;
+        font-size: 14px;
+        line-height: 16px;
+    }
 
 .buttonsContainer.hidden {
     display: none;
@@ -99,9 +102,9 @@ div.changedOnUpdate-input-wrapper {
     color: red;
 }
 
-.btn-container{
-   display:flex;
-   flex-direction:row-reverse;
+.btn-container {
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .warningButtonTooltip {
@@ -118,7 +121,6 @@ div.changedOnUpdate-input-wrapper {
         width: 100%;
     }
 }
-
 
 
 /* trick to change SVG color. https://stackoverflow.com/a/49627345 

@@ -16,21 +16,13 @@
 * UNINTERRUPTED OR ERROR FREE.
 */
 
-body{
-    overflow:hidden;
-}
-
 .viewer {
     background-color: white;
     position: relative;
-    border-style: solid;
-    border-width: 8px;
-    border-color: #D9D9D9;
     height: 100%;
 }
 
 .modelContainer {
-    min-height:100%;
-    min-width :100%;
+    width: 100vw;
+    height: 100%;
 }
-
