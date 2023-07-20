@@ -39,7 +39,6 @@ export class ParametersContainer extends Component {
         this.state = {
            isOpen: false,
            innerWidth: window.innerWidth
-
         }
 
         this.showParametersContainer = this.showParametersContainer.bind(this)
