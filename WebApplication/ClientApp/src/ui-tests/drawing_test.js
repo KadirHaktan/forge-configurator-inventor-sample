@@ -23,7 +23,8 @@ const { debug } = require('console');
 /* eslint-disable no-undef */
 const noDrawingElement = '.drawingEmptyText';
 const locators = require('./elements_definition.js');
-const viewCubeElement = '//div[@id="ForgePdfViewer"] //div[@class="viewcubeWrapper"]';
+const viewCubeElement = '//div[@id="ForgePdf
+"] //div[@class="viewcubeWrapper"]';
 
 // compare two Arrays and return true or false
 function compareDrawings(array1, array2)
