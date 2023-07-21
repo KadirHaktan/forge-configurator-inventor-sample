@@ -53,11 +53,12 @@
     line-height: 18px;
 }
 
-    .parameter.checkbox {
+.parameter.checkbox {
         padding-bottom: 32px;
         height: 20px;
         display: flex;
-        flex-flow: row;
+    flex-flow: row;
+
     }
 
     .parameter.checkboxtext {
@@ -120,6 +121,11 @@ div.changedOnUpdate-input-wrapper {
     .parametersContainer {
         width: 100%;
     }
+}
+
+
+.btn-title-parameters{
+    margin-left:0.5em;
 }
 
 
