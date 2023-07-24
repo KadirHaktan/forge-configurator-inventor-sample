@@ -38,10 +38,8 @@ export class ForgeView extends Component {
 
     resizeViewer() {
         if (this.viewer && this.viewerDiv.current) {
-            const container = this.viewerDiv.current;      
-            setTimeout(() => {
-                this.viewer.resize()
-            },100)
+            const container = this.viewerDiv.current;
+            this.viewer.resize()
         }
     }
 

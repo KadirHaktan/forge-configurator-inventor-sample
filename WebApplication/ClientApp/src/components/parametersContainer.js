@@ -129,8 +129,9 @@ export class ParametersContainer extends Component {
             <>
                 {
                     !this.state.isOpen && (
-                        <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}  >
-                            <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i>
+                        <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}>
+                            {innerWidth < 876 ? <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i> : <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i>}
+                            {innerWidth && <span className ='btn-title-parameters'>Parameters</span>}
                         </button>
                     )
                 }
