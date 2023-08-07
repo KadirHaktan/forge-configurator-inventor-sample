@@ -38,13 +38,14 @@ export class ForgeView extends Component {
 
     }
 
-    
+  
 
     resizeViewer() {
-        if (this.viewer && this.viewerDiv.current) {
-            const container = this.viewerDiv.current;
-            this.viewer.resize()
-        }   
+            if (this.viewer && this.viewerDiv.current) {
+                const container = this.viewerDiv.current;
+                this.viewer.resize();
+                console.log('resized');
+            }   
     }
 
     handleScriptLoad() {
@@ -112,6 +113,7 @@ export class ForgeView extends Component {
 
     componentDidMount() {
         this.resizeViewer();
+
     }
 
     componentDidUpdate(prevProps) {
@@ -132,6 +134,7 @@ export class ForgeView extends Component {
         }
 
         window.removeEventListener("resize", this.resizeViewer.bind(this));
+
     }
 
     getSvfUrl() {
@@ -149,7 +152,6 @@ export class ForgeView extends Component {
 
       return (
             <div className="modelContainer fullheight">
-                <Message/>
               <div className="viewer" id="ForgeViewer">
                   <div ref={this.viewerDiv}></div>
                     <link rel="stylesheet" type="text/css" href={ viewerCss } />

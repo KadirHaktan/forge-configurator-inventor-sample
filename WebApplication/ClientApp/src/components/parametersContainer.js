@@ -127,8 +127,8 @@ export class ParametersContainer extends Component {
                 {
                     !this.state.isOpen && (
                         <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}>
-                            {innerWidth < 876 ? <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i> : <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i>}
-                            {innerWidth && <span className ='btn-title-parameters'>Parameters</span>}
+                            <i className={`fa-solid fa-arrow-${innerWidth <= 875 ? 'down' : 'right'}`}></i>
+                            <span className ='btn-title-parameters'>Parameters</span>
                         </button>
                     )
                 }
@@ -146,7 +146,7 @@ export class ParametersContainer extends Component {
                             <div className="parameters" id="parameterList">
                                 <div className="btn-container">
                                     <button className="btn btn-primary btn-sm" onClick={this.hideParametersContainer}>
-                                        <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'up' : 'left'}`}></i></button>
+                                        <i className={`fa-solid fa-arrow-${innerWidth <= 875 ? 'up' : 'left'}`}></i></button>
                                 </div>
                                 {parameterList ? this.renderSubParameterList(parameterList) : "No parameters"}
                             </div>

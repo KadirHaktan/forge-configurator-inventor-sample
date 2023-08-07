@@ -40,7 +40,7 @@
    
 }
 
-@media only screen and (max-width: 876px) {
+@media only screen and (max-width: 875px) {
     .inRow {
         flex-direction: column;
     }
