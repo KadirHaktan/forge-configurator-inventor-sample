@@ -27,7 +27,6 @@ import { showModalProgress, showUpdateFailed, invalidateDrawing } from '../actio
 import Button from '@hig/button';
 import Tooltip from '@hig/tooltip';
 import { Alert24 } from "@hig/icons";
-
 import ModalProgress from './modalProgress';
 import ModalFail from './modalFail';
 import { fullWarningMsg } from '../utils/conversion';
@@ -37,8 +36,8 @@ export class ParametersContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-           isOpen: false,
-           innerWidth: window.innerWidth
+            isOpen : false,
+            innerWidth: window.innerWidth
         }
 
         this.showParametersContainer = this.showParametersContainer.bind(this)
@@ -56,19 +55,18 @@ export class ParametersContainer extends Component {
         this.setState({
             isOpen:false
         })
+
     }
 
-   
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
         window.addEventListener('resize', this.handleResize);
-
     }
-
+     
     componentDidUpdate(prevProps) {
         // fetch parameters when params UI was active before projects initialized
         if (this.props.activeProject.id !== prevProps.activeProject.id)
-            this.props.fetchParameters(this.props.activeProject.id);  
+            this.props.fetchParameters(this.props.activeProject.id);       
     }
 
     componentWillUnmount() {
@@ -79,7 +77,7 @@ export class ParametersContainer extends Component {
         this.setState({ innerWidth: window.innerWidth });
     }
 
-
+    
     updateClicked() {
         this.props.updateModelWithParameters(this.props.activeProject.id, this.props.projectUpdateParameters);
         // mark drawing as not valid if any available
@@ -102,7 +100,6 @@ export class ParametersContainer extends Component {
     renderSubParameterList(parameterList){
        
             const subParameterList=parameterList.filter(parameter=>this.getFilteredParameter(parameter.label))
-            console.log(subParameterList)
             return subParameterList.map((parameter, index) =>
                 <Parameter parameter={parameter} key={index }/>
                 
@@ -117,7 +114,7 @@ export class ParametersContainer extends Component {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
         const { innerWidth } = this.state;
-
+        const { isOpen } = this.props;
         // if model adopted with warning - then button should became white and have a tooltip with warning details
         const adoptWarning = this.props.adoptWarning;
         const tooltipProps = adoptWarning ? { openOnHover: true, content: () => <div className="warningButtonTooltip">{ adoptWarning }</div>  } : { open: false };

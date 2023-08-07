@@ -32,12 +32,6 @@
     flex: auto;
 }
 
-.pencilContainer {
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
 .parametersSeparator {
     margin-top: 8px;
     margin-bottom: 0;
@@ -54,18 +48,17 @@
 }
 
 .parameter.checkbox {
-        padding-bottom: 32px;
-        height: 20px;
-        display: flex;
+    padding-bottom: 32px;
+    height: 20px;
+    display: flex;
     flex-flow: row;
+}
 
-    }
-
-    .parameter.checkboxtext {
-        padding-left: 12px;
-        font-size: 14px;
-        line-height: 16px;
-    }
+.parameter.checkboxtext {
+    padding-left: 12px;
+    font-size: 14px;
+    line-height: 16px;
+}
 
 .buttonsContainer.hidden {
     display: none;

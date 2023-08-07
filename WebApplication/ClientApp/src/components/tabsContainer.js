@@ -29,7 +29,10 @@ export class TabsContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { open: this.props.embeddedModeEnabled };
+        this.state = {
+            open: this.props.embeddedModeEnabled,
+            
+        };
     }
 
     onTabChange(index) {
@@ -48,9 +51,9 @@ export class TabsContainer extends Component {
             
                 <div className='inRow fullheight'>
                     {!showParameters &&
-                        <ParametersContainer />
+                        < ParametersContainer  />
                     }
-                    <ForgeView/>
+                    <ForgeView  />
                   </div>
                 </div>
         
