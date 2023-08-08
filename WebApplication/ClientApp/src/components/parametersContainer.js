@@ -27,7 +27,6 @@ import { showModalProgress, showUpdateFailed, invalidateDrawing } from '../actio
 import Button from '@hig/button';
 import Tooltip from '@hig/tooltip';
 import { Alert24 } from "@hig/icons";
-
 import ModalProgress from './modalProgress';
 import ModalFail from './modalFail';
 import { fullWarningMsg } from '../utils/conversion';
@@ -37,8 +36,8 @@ export class ParametersContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-           isOpen: false,
-           innerWidth: window.innerWidth
+            isOpen : false,
+            innerWidth: window.innerWidth
         }
 
         this.showParametersContainer = this.showParametersContainer.bind(this)
@@ -50,25 +49,25 @@ export class ParametersContainer extends Component {
         this.setState({
             isOpen:true
         })
+        this.props.onResize();
     }
 
     hideParametersContainer() {
         this.setState({
             isOpen:false
         })
+        this.props.onResize();
     }
 
-   
     componentDidMount() {
         this.props.fetchParameters(this.props.activeProject.id);
         window.addEventListener('resize', this.handleResize);
-
     }
-
+     
     componentDidUpdate(prevProps) {
         // fetch parameters when params UI was active before projects initialized
         if (this.props.activeProject.id !== prevProps.activeProject.id)
-            this.props.fetchParameters(this.props.activeProject.id);  
+            this.props.fetchParameters(this.props.activeProject.id);       
     }
 
     componentWillUnmount() {
@@ -79,7 +78,7 @@ export class ParametersContainer extends Component {
         this.setState({ innerWidth: window.innerWidth });
     }
 
-
+    
     updateClicked() {
         this.props.updateModelWithParameters(this.props.activeProject.id, this.props.projectUpdateParameters);
         // mark drawing as not valid if any available
@@ -102,7 +101,6 @@ export class ParametersContainer extends Component {
     renderSubParameterList(parameterList){
        
             const subParameterList=parameterList.filter(parameter=>this.getFilteredParameter(parameter.label))
-            console.log(subParameterList)
             return subParameterList.map((parameter, index) =>
                 <Parameter parameter={parameter} key={index }/>
                 
@@ -117,7 +115,7 @@ export class ParametersContainer extends Component {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
         const { innerWidth } = this.state;
-
+        const { isOpen } = this.props;
         // if model adopted with warning - then button should became white and have a tooltip with warning details
         const adoptWarning = this.props.adoptWarning;
         const tooltipProps = adoptWarning ? { openOnHover: true, content: () => <div className="warningButtonTooltip">{ adoptWarning }</div>  } : { open: false };
@@ -130,8 +128,8 @@ export class ParametersContainer extends Component {
                 {
                     !this.state.isOpen && (
                         <button className="btn btn-primary  btn-sm configurator-button" onClick={this.showParametersContainer}>
-                            {innerWidth < 876 ? <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i> : <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'down' : 'right'}`}></i>}
-                            {innerWidth && <span className ='btn-title-parameters'>Parameters</span>}
+                            <i className={`fa-solid fa-arrow-${innerWidth <= 875 ? 'down' : 'right'}`}></i>
+                            <span className ='btn-title-parameters'>Parameters</span>
                         </button>
                     )
                 }
@@ -149,7 +147,7 @@ export class ParametersContainer extends Component {
                             <div className="parameters" id="parameterList">
                                 <div className="btn-container">
                                     <button className="btn btn-primary btn-sm" onClick={this.hideParametersContainer}>
-                                        <i className={`fa-solid fa-arrow-${innerWidth < 876 ? 'up' : 'left'}`}></i></button>
+                                        <i className={`fa-solid fa-arrow-${innerWidth <= 875 ? 'up' : 'left'}`}></i></button>
                                 </div>
                                 {parameterList ? this.renderSubParameterList(parameterList) : "No parameters"}
                             </div>

@@ -24,6 +24,7 @@ import './forgeView.css';
 import Message from './message';
 import repo from '../Repository';
 import { viewerCss, viewerJs } from './shared';
+import './parametersContainer.css'
 
 let Autodesk = null;
 
@@ -31,16 +32,27 @@ export class ForgeView extends Component {
 
     constructor(props){
       super(props);
-
+        
       this.viewerDiv = React.createRef();
       this.viewer = null;
+
     }
 
+  
+
     resizeViewer() {
+
+            if (this.viewer && this.viewerDiv.current) {
+                const container = this.viewerDiv.current;
+                this.viewer.resize();
+                console.log('resized');
+            }   
+
         if (this.viewer && this.viewerDiv.current) {
            // const container = this.viewerDiv.current;
             this.viewer.resize()
         }
+
     }
 
     handleScriptLoad() {
@@ -90,11 +102,6 @@ export class ForgeView extends Component {
             const modelExtension = viewer.getExtension('Autodesk.ModelStructure');
             const propertiesExtension = viewer.getExtension('Autodesk.PropertiesManager');
 
-           
-
-         
-          
-
             explodeExtension.unload();
             sectionExtension.unload();
             modelExtension.unload();
@@ -116,6 +123,11 @@ export class ForgeView extends Component {
     }
 
     componentDidUpdate(prevProps) {
+
+        if (this.props.isResizing !== prevProps.isResizing && this.props.isResizing) {
+            this.resizeViewer();
+        }
+
         if (Autodesk && (this.props.activeProject.svf !== prevProps.activeProject.svf)) {
             Autodesk.Viewing.Document.load(
                 this.getSvfUrl(), this.onDocumentLoadSuccess.bind(this), () => {}
@@ -123,8 +135,6 @@ export class ForgeView extends Component {
         }
 
         this.resizeViewer();
-
-       
     }
 
     componentWillUnmount() {
@@ -135,6 +145,7 @@ export class ForgeView extends Component {
         }
 
         window.removeEventListener("resize", this.resizeViewer.bind(this));
+
     }
 
     getSvfUrl() {
@@ -149,11 +160,11 @@ export class ForgeView extends Component {
     }
 
     render() {
-        return (
+
+      return (
             <div className="modelContainer fullheight">
-                <Message/>
-                <div className="viewer" id="ForgeViewer">
-                    <div ref={this.viewerDiv}></div>
+              <div className="viewer" id="ForgeViewer">
+                  <div ref={this.viewerDiv}></div>
                     <link rel="stylesheet" type="text/css" href={ viewerCss } />
                     <Script url={ viewerJs } onLoad={this.handleScriptLoad.bind(this)} />
                 </div>

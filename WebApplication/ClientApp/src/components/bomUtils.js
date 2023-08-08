@@ -25,6 +25,7 @@ export function getMaxColumnTextWidth(strings) {
     const context2d = canvas.getContext("2d");
     context2d.font = font;
     let maxWidth = 0;
+
     strings.forEach(element => {
       const width = context2d.measureText(element).width;
       maxWidth = width>maxWidth ? width : maxWidth;

@@ -29,12 +29,19 @@ export class TabsContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { open: this.props.embeddedModeEnabled };
+        this.state = {
+            open: this.props.embeddedModeEnabled,
+            isResizing: false,
+        };
     }
 
     onTabChange(index) {
       this.props.updateActiveTabIndex(index);
     }
+
+    handleResize = () => {
+        this.setState({ isResizing: !this.state.isResizing });
+    };
 
     render() {
 
@@ -47,10 +54,8 @@ export class TabsContainer extends Component {
             <div id="model" className='tabContent fullheight'>
             
                 <div className='inRow fullheight'>
-                    {!showParameters &&
-                        <ParametersContainer />
-                    }
-                    <ForgeView/>
+                    {!showParameters && < ParametersContainer onResize={this.handleResize} />}
+                    <ForgeView isResizing={this.state.isResizing} />
                   </div>
                 </div>
         
