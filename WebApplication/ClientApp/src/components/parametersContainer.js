@@ -49,13 +49,14 @@ export class ParametersContainer extends Component {
         this.setState({
             isOpen:true
         })
+        this.props.onResize();
     }
 
     hideParametersContainer() {
         this.setState({
             isOpen:false
         })
-
+        this.props.onResize();
     }
 
     componentDidMount() {

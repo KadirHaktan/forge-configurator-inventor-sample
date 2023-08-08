@@ -113,10 +113,14 @@ export class ForgeView extends Component {
 
     componentDidMount() {
         this.resizeViewer();
-
     }
 
     componentDidUpdate(prevProps) {
+
+        if (this.props.isResizing !== prevProps.isResizing && this.props.isResizing) {
+            this.resizeViewer();
+        }
+
         if (Autodesk && (this.props.activeProject.svf !== prevProps.activeProject.svf)) {
             Autodesk.Viewing.Document.load(
                 this.getSvfUrl(), this.onDocumentLoadSuccess.bind(this), () => {}
