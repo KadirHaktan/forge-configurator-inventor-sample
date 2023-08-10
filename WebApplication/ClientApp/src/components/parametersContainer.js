@@ -103,7 +103,6 @@ export class ParametersContainer extends Component {
             const subParameterList=parameterList.filter(parameter=>this.getFilteredParameter(parameter.label))
             return subParameterList.map((parameter, index) =>
                 <Parameter parameter={parameter} key={index }/>
-                
             )
         
     }
@@ -145,11 +144,12 @@ export class ParametersContainer extends Component {
                             }}>
                             </div>
                             <div className="parameters" id="parameterList">
+                                
+                                {parameterList ? this.renderSubParameterList(parameterList) : "No parameters"}
                                 <div className="btn-container">
                                     <button className="btn btn-primary btn-sm" onClick={this.hideParametersContainer}>
                                         <i className={`fa-solid fa-arrow-${innerWidth <= 875 ? 'up' : 'left'}`}></i></button>
                                 </div>
-                                {parameterList ? this.renderSubParameterList(parameterList) : "No parameters"}
                             </div>
 
 
