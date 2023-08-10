@@ -43,21 +43,44 @@ export class App extends Component {
     if (this.props.embeddedModeUrl != null)
           this.props.adoptProjectWithParameters(this.props.embeddedModeUrl);
 
-    this.props.fetchProjects();
+      this.props.fetchProjects();
+
+      
   }
 
   render () {
-    return (
-        <Surface className="fullheight" id="main" level={200}>
-        <TabsContainer/>
-        {this.props.adoptWithParamsProgressShowing &&
+      return (
+          <Surface className="fullheight" id="main" level={200}>
+              {
+                  this.props.projectList.projects ? (  
+                    <>
+               <TabsContainer/>
+         {this.props.adoptWithParamsProgressShowing &&
           <ModalProgress
               open={true}
               title="Loading Content"
               label=" "
-              icon="/Assembly_icon.svg"/>
-        }
-      </Surface>
+              icon="/Assembly_icon.svg"/>}
+        </>) :(<div className="spinner">
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                          </div>)
+          }
+          </Surface>
+      //  <Surface className="fullheight" id="main" level={200}>
+      //  <TabsContainer/>
+      //  {this.props.adoptWithParamsProgressShowing &&
+      //    <ModalProgress
+      //        open={true}
+      //        title="Loading Content"
+      //        label=" "
+      //        icon="/Assembly_icon.svg"/>
+      //  }
+      //</Surface>
     );
   }
 }
