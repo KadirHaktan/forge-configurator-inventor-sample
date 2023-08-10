@@ -115,7 +115,7 @@ export class ParametersContainer extends Component {
         const parameterList = this.props.activeProject ? this.props.projectUpdateParameters : [];
         const buttonsContainerClass = parameterList ? "buttonsContainer" : "buttonsContainer hidden";
         const { innerWidth } = this.state;
-        const { isOpen } = this.props;
+       // const { isOpen } = this.props;
         // if model adopted with warning - then button should became white and have a tooltip with warning details
         const adoptWarning = this.props.adoptWarning;
         const tooltipProps = adoptWarning ? { openOnHover: true, content: () => <div className="warningButtonTooltip">{ adoptWarning }</div>  } : { open: false };

@@ -21,7 +21,6 @@ import Script from 'react-load-script';
 import {connect} from 'react-redux';
 import { getActiveProject } from '../reducers/mainReducer';
 import './forgeView.css';
-import Message from './message';
 import repo from '../Repository';
 import { viewerCss, viewerJs } from './shared';
 import './parametersContainer.css'
@@ -43,7 +42,7 @@ export class ForgeView extends Component {
     resizeViewer() {
 
             if (this.viewer && this.viewerDiv.current) {
-                const container = this.viewerDiv.current;
+               // const container = this.viewerDiv.current;
                 this.viewer.resize();
                 console.log('resized');
             }   

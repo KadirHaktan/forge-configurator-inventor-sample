@@ -61,7 +61,7 @@ export class App extends Component {
               title="Loading Content"
               label=" "
               icon="/Assembly_icon.svg"/>}
-                      </>) : (<div class="loaderBar"></div> )
+                      </>) : (<div className="loaderBar"></div> )
           }
           </Surface>
       //  <Surface className="fullheight" id="main" level={200}>
