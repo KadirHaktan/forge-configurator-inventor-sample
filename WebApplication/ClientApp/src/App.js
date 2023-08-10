@@ -50,7 +50,7 @@ export class App extends Component {
 
   render () {
       return (
-          <Surface className="fullheight" id="main" level={200}>
+          <Surface className={`fullheight ${!this.props.projectList.projects ? 'center-animation' : ''}`} id="main" level={200}>
               {
                   this.props.projectList.projects ? (  
                     <>
@@ -61,14 +61,7 @@ export class App extends Component {
               title="Loading Content"
               label=" "
               icon="/Assembly_icon.svg"/>}
-        </>) :(<div className="spinner">
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                          </div>)
+                      </>) : (<div class="loaderBar"></div> )
           }
           </Surface>
       //  <Surface className="fullheight" id="main" level={200}>
